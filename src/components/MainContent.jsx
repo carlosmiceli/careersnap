@@ -19,13 +19,13 @@ import Submit from "./sub/Submit";
 
 function MainContent() {
     return (
-        <div className="flex flex-cols-4 md:grid-cols-none">
-            <div >
+        <div className="grid grid-cols-2 lg:flex flex-cols-4">
+            <div className="order-1">
                 <Photo />
                 <Status />
                 <Links />
             </div>
-            <div>
+            <div className="order-3 lg:order-2">
                 <About />
                 <Goals />
                 <WeirdProud />
@@ -33,7 +33,7 @@ function MainContent() {
                 <JobCriteria />
                 <JobExample />
             </div>
-            <div>
+            <div className="order-4 lg:order-3">
                 <Skills />
                 <Learning />
                 <Questions />
@@ -41,11 +41,10 @@ function MainContent() {
                 <CompanyCriteria />
                 <CompanyExample />
             </div>
-            <div >
+            <div className="order-2 lg:order-4">
                 <Reward />
                 <System />
                 <Help />
-                <Submit />
             </div>
         </div>
     );

@@ -1,12 +1,11 @@
 import {
-    Input
-} from "../../shadcn/components/ui/input";
+    Button
+} from "../../shadcn/components/ui/button";
 
 function Submit() {
     return (
         <div>
-            <h1>Want your own CareerSnap?</h1>
-            <Input type="text" placeholder="Your Email" />
+            <Button>Want your own CareerSnap?</Button>
         </div>
     );
 }
