@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="App flex flex-col bg-indigo-100 text-black h-screen">
+    <div className="App flex flex-col bg-indigo-200 text-black h-screen">
       <Submit />
       <MainContent />
       <Footer />
