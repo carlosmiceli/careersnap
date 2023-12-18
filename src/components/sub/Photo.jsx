@@ -1,14 +1,8 @@
-import {
-    Card
-} from "../../shadcn/components/ui/card";
-
 function Photo() {
     return (
-        <div>
-            <Card className="w-2/3">
-                <img src="images/carlos.jpeg" alt="Carlos"/>
-            </Card>
-
+        <div className="flex flex-col gap-2">
+            <img className="rounded-lg" src="images/carlos.jpeg" alt="Carlos" />
+            <h1 className="text-3xl">Carlos Miceli</h1>
         </div>
     );
 }

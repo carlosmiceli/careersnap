@@ -1,12 +1,9 @@
-import Submit from "./sub/Submit"
-
 function Footer() {
     return (
-        <div>
-            <Submit />
-            <p>© 2023 - Created by <a href="https://carlosmiceli.com/">Carlos Miceli</a></p>
+        <div className="flex flex-col bg-white border border-t-black">
+            <p className="w-full text-center text-black py-3">© 2023 - CareerSnap created by <a href="https://carlosmiceli.com/">Carlos Miceli</a></p>
         </div>
     )
-}
+}   
 
 export default Footer
