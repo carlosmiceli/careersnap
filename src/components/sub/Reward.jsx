@@ -1,7 +1,4 @@
 import {
-    useState
-} from "react";
-import {
     Card
 } from "../../shadcn/components/ui/card";
 import {
@@ -10,8 +7,6 @@ import {
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -27,6 +22,8 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "../../shadcn/components/ui/alert-dialog"
+import { ScrollArea } from "../../shadcn/components/ui/scroll-area"
+import HelpersForm from "./forms/Helpers";
 
 function Reward() {
     return (
@@ -48,19 +45,22 @@ function Reward() {
                     </Dialog>
                 </div>
                 <AlertDialog>
-                    <AlertDialogTrigger><Button className="text-xl bg-[#242C3F] mb-5">I Want to Help!</Button></AlertDialogTrigger>
+                    <AlertDialogTrigger asChild><Button className="text-xl bg-[#242C3F] mb-5">I Want to Help!</Button></AlertDialogTrigger>
                     <AlertDialogContent>
-                        <AlertDialogHeader>
-                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                            <AlertDialogDescription>
-                                This action cannot be undone. This will permanently delete your account
-                                and remove your data from our servers.
-                            </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction>Continue</AlertDialogAction>
-                        </AlertDialogFooter>
+                        <ScrollArea className="w-full h-full">
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    This action cannot be undone. This will permanently delete your account
+                                    and remove your data from our servers.
+                                </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <HelpersForm />
+                            <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction>Continue</AlertDialogAction>
+                            </AlertDialogFooter>
+                        </ScrollArea>
                     </AlertDialogContent>
                 </AlertDialog>
                 <p className="text-xs">*Estimation based on previous salary, market avg. compensation, company location, etc.</p>

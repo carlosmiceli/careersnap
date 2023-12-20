@@ -7,9 +7,14 @@ import Previous from "./sub/Previous";
 import Reward from "./sub/Reward";
 
 function MainContent() {
+    const currentDate = new Date();
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const formattedDate = currentDate.toLocaleDateString('en-US', options);
+    
     return (
         <div className="flex flex-col py-4 h-full w-full items-center">
-            <h1 className="text-3xl mb-6">My Career Snap</h1>
+
+            <h1 className="text-3xl mb-6">Carlos' Career Snapshot <span className="text-[16px]">(as of {formattedDate})</span></h1>
             <div className="grid grid-cols-2 lg:flex flex-cols-4 w-10/12 gap-6">
                 <div className="order-1 flex flex-col gap-3 lg: w-2/12">
                     <Photo />
