@@ -10,13 +10,13 @@
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
       if (window.location.pathname === '/') {
-        history.pushState({}, '', '/carlos');
+        history.pushState({}, '', '/carlos-miceli');
       }
     });
   </script>
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
-      var allowedPaths = ['/', '/carlos'];
+      var allowedPaths = ['/', '/carlos-miceli'];
       if (!allowedPaths.includes(window.location.pathname)) {
         window.location.href = '/';
       }

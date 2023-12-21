@@ -24,18 +24,33 @@ const helpersSchema = z.object({
         message: "Name must be between 2 and 50 characters.",
     }),
     contact: z.string().optional(),
-    link: z.string().url({
+    link: z.string().optional().refine((data) => !data || isValidUrl(data), {
         message: "Invalid link URL.",
-    }).optional(),
+    }),
     description: z.string().min(2).max(1000, {
         message: "Description must be between 2 and 1000 characters.",
-    }).optional(),
-})
+    })
+});
+
+function isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
 
 function HelpersForm() {
     const [form, hideForm] = useState(false);
     const methods = useForm({
         resolver: zodResolver(helpersSchema),
+        defaultValues: {
+            name: "",
+            contact: "",
+            link: "",
+            description: "",
+        },
     });
     const { handleSubmit, reset, control } = methods;
 
@@ -114,12 +129,12 @@ function HelpersForm() {
                                 name="description"
                                 render={() => (
                                     <FormItem>
-                                        <FormDescription>Any other instructions or details I should know to make this happen? 😊</FormDescription>
+                                        <FormDescription>Tell me the details or instructions about this opportunity 😊</FormDescription>
                                         <FormControl>
                                             <Controller
                                                 name="description"
                                                 control={control}
-                                                render={({ field }) => <Textarea {...field} className="border border-black" placeholder="What else should I do or know to pursue this opportunity?" />}
+                                                render={({ field }) => <Textarea {...field} className="border border-black" placeholder="What should I do or know to pursue this opportunity?" />}
                                             />
                                         </FormControl>
                                         <FormMessage />
