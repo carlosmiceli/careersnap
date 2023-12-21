@@ -1,153 +1,146 @@
-"use client"
+import { useState } from 'react';
 import db from '../../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 import * as z from "zod"
 
 import { Button } from "../../../shadcn/components/ui/button"
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormMessage,
 } from "../../../shadcn/components/ui/form"
 
 import { Input } from "../../../shadcn/components/ui/input"
+import { Textarea } from '../../../shadcn/components/ui/textarea';
+import { AlertDialogCancel } from '../../../shadcn/components/ui/alert-dialog';
 
 const helpersSchema = z.object({
     name: z.string().min(2).max(50, {
         message: "Name must be between 2 and 50 characters.",
     }),
-    email: z.string().email({
-        message: "Invalid email address.",
-    }).optional(),
-    profile: z.string().optional(),
+    contact: z.string().optional(),
     link: z.string().url({
         message: "Invalid link URL.",
     }).optional(),
     description: z.string().min(2).max(1000, {
         message: "Description must be between 2 and 1000 characters.",
-    }),
+    }).optional(),
 })
 
 function HelpersForm() {
-    // 1. Define your form.
-    const form = useForm({
+    const [form, hideForm] = useState(false);
+    const methods = useForm({
         resolver: zodResolver(helpersSchema),
-        defaultValues: {
-            name: "",
-            email: "",
-            profile: "",
-            link: "",
-            description: "",
-        },
     });
+    const { handleSubmit, reset, control } = methods;
 
-    const handleSubmit = async (values) => {
+    const onSubmit = async (data) => {
+        console.log(data)
         try {
-            const res = await addDoc(collection(db, "helpers"), values);
-            if (res.id) {
-                console.log("Email added successfully");
-                form.reset(); // Reset the form values
-            } else {
-                console.error("Error adding email: ", res);
-            }
+            const docRef = await addDoc(collection(db, "helpers"), { name: data.name, contact: data.contact, link: data.link, description: data.description });
+            reset();
+            hideForm(true);
         } catch (error) {
-            console.error("Error adding email: ", error);
+            console.error("Error adding helper: ", error);
         }
     };
 
+
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
-                <FormField
-                    control={form.control}
-                    name="name" // Updated the name prop to match the field name in the form schema
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Enter your name" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is your name.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="email" // Added the email field
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Enter your email" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is your email address.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="profile" // Added the profile field
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Profile</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Enter your profile" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is your profile.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="link" // Added the link field
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Link</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Enter the link" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is the link URL.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="description" // Added the description field
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Description</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Enter the description" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is the description.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit">Submit</Button>
-            </form>
-        </Form>
+        < div >
+            {
+                !form
+                    ?
+                    <Form {...methods} onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-[95%] pl-2">
+                            <FormField
+                                control={control}
+                                name="name"
+                                render={() => (
+                                    <FormItem>
+                                        <FormDescription>Name</FormDescription>
+                                        <FormControl>
+                                            <Controller
+                                                name="name"
+                                                control={control}
+                                                render={({ field }) => <Input {...field} className="border border-black" placeholder="Enter your first name at least so I know how to call you :)" />}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>)}
+
+                            />
+                            <FormField
+                                control={control}
+                                name="contact"
+                                render={() => (
+                                    <FormItem>
+                                        <FormDescription>How can I contact you?</FormDescription>
+                                        <FormControl>
+                                            <Controller
+                                                name="contact"
+                                                control={control}
+                                                render={({ field }) => <Input {...field} className="border border-black" placeholder="Email, social media profile, phone number, whatever..." />}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={control}
+                                name="link"
+                                render={() => (
+                                    <FormItem>
+                                        <FormDescription>Is there a link? If so, paste it below.</FormDescription>
+                                        <FormControl>
+                                            <Controller
+                                                name="link"
+                                                control={control}
+                                                render={({ field }) => <Input {...field} className="border border-black" placeholder="It could be a job listing, someone's profile, a company website, etc." />}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={control}
+                                name="description"
+                                render={() => (
+                                    <FormItem>
+                                        <FormDescription>Any other instructions or details I should know to make this happen? 😊</FormDescription>
+                                        <FormControl>
+                                            <Controller
+                                                name="description"
+                                                control={control}
+                                                render={({ field }) => <Textarea {...field} className="border border-black" placeholder="What else should I do or know to pursue this opportunity?" />}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div className='flex gap-2'>
+                                <Button type="submit">Submit</Button>
+                                <AlertDialogCancel className="border border-black">Cancel</AlertDialogCancel>
+                            </div>
+                        </form>
+                    </Form>
+                    :
+                    <div className='flex flex-col gap-10 justify-center items-center text-2xl'><p>
+                        Thank you! I'll be in touch!
+                    </p>
+                        <AlertDialogCancel className="border border-black bg-black text-white">Close</AlertDialogCancel>
+                    </div>}
+        </div >
     );
+
 }
 
 export default HelpersForm

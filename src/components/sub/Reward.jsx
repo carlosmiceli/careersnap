@@ -47,19 +47,25 @@ function Reward() {
                 <AlertDialog>
                     <AlertDialogTrigger asChild><Button className="text-xl bg-[#242C3F] mb-5">I Want to Help!</Button></AlertDialogTrigger>
                     <AlertDialogContent>
-                        <ScrollArea className="w-full h-full">
-                            <AlertDialogHeader>
-                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                <AlertDialogDescription>
-                                    This action cannot be undone. This will permanently delete your account
-                                    and remove your data from our servers.
-                                </AlertDialogDescription>
-                            </AlertDialogHeader>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle className="w-[95%] pl-2">Thank you for helping me get my next job!</AlertDialogTitle>
+                            <AlertDialogDescription className="text-neutral-600 w-[95%] pl-2">
+                                To let me know about any job opportunities I should apply for, or to introduce me to someone you think could help me, you can:
+                                <ul>
+                                    <br />
+                                    <li>
+                                        A- Fill the form below.
+                                    </li>
+                                    <li>
+                                        B- Email me / message me wherever.
+                                    </li>
+                                    <br />
+                                </ul>
+                                Whatever is easier for you! If I end up getting that job you'll get the reward regardless of how you told me. Just make sure I can find you, so we can coordinate how to give you the reward!
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <ScrollArea className="w-full h-full pr-3">
                             <HelpersForm />
-                            <AlertDialogFooter>
-                                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                <AlertDialogAction>Continue</AlertDialogAction>
-                            </AlertDialogFooter>
                         </ScrollArea>
                     </AlertDialogContent>
                 </AlertDialog>
