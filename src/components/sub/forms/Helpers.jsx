@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import db from '../../../firebase';
+import React, { useState } from 'react';
+import {db} from '../../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, Controller } from "react-hook-form"
@@ -58,8 +58,10 @@ function HelpersForm() {
         console.log(data)
         try {
             const docRef = await addDoc(collection(db, "helpers"), { name: data.name, contact: data.contact, link: data.link, description: data.description });
-            reset();
-            hideForm(true);
+            if (docRef.id) {
+                reset();
+                hideForm(true);
+            }
         } catch (error) {
             console.error("Error adding helper: ", error);
         }
