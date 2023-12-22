@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Link(props) {
     const { image, text, url } = props;
 
