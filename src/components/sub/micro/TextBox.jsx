@@ -1,8 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-
-import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 
 function TextBox(props) {
