@@ -1,38 +1,50 @@
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { useAuth } from '../../../contexts/auth';
 import { auth } from '../../../firebase';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from '../../../shadcn/components/ui/dialog';
+import { Input } from '../../../shadcn/components/ui/input';
 
 function SignIn() {
+  const { user } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // Handle successful sign-in
-    } catch (error) {
-      console.error(error);
-      // Handle errors
-    }
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+
   };
 
   return (
-    <div>
-      {/* <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      <button >Sign In</button> */}
-      <Dialog>
-        <DialogTrigger asChild>
-          <p onClick={handleSignIn}>(Admin login)</p>
-        </DialogTrigger>
-        <DialogContent className="">
-          <DialogHeader>
-            <DialogTitle>Career Snap's Reward System</DialogTitle>
-          </DialogHeader>
-          <p>I believe that connecting someone... </p>
-        </DialogContent>
-      </Dialog>
+    <div className='flex items-center'>
+      {!user ?
+        <Dialog>
+          <DialogTrigger asChild>
+            <p className='pr-5 text-xs hover:cursor-pointer'>(Admin)</p>
+          </DialogTrigger>
+          <DialogContent className="">
+            <DialogHeader>
+              <DialogTitle>Sign In</DialogTitle>
+            </DialogHeader>
+            <div className="flex flex-col gap-4">
+              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
+              <Input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
+              <button onClick={handleSignIn}>Sign In</button>
+            </div>
+          </DialogContent>
+        </Dialog>
+        :
+        <p className='pr-5 text-xs hover:cursor-pointer' onClick={() => signOut(auth)}>Logout</p>
+      }
     </div>
   );
 }

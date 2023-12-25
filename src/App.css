@@ -74,3 +74,56 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* .ql-editor {
+  min-height: 500px;
+  @apply bg-background text-foreground;
+} */
+
+.ql-container {
+  min-height: 10rem;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ql-editor {
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+  width: 100%;
+}
+
+.sanitized-content a {
+  text-decoration: underline;
+}
+
+.sanitized-content ul {
+  list-style-type: disc;
+  /* other styles */
+}
+
+.sanitized-content li {
+  margin-left: 20px;
+  /* other styles */
+}
+
+.sanitized-content ol {
+  list-style-type: decimal; /* Default style for ordered lists */
+  padding-left: 20px; /* Ensure padding for the numbers */
+}
+
+.sanitized-content h1 {
+  font-size: 2em; /* Adjust as needed */
+  font-weight: bold;
+  /* Add other styling as needed */
+}
+
+.sanitized-content h2 {
+  font-size: 1.5em; /* Adjust as needed */
+  /* Add other styling as needed */
+}
+
+/* Repeat for h3, h4, h5, h6 if needed */
+

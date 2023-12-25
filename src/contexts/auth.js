@@ -4,26 +4,22 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 const AuthContext = createContext();
 
-const useAuth = () => useContext(AuthContext);
-
-const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      setCurrentUser(user);
-      setLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
     });
 
-    return unsubscribe;
+    return unsubscribe; // Cleanup subscription on unmount
   }, []);
 
   return (
-    <AuthContext.Provider value={{ currentUser }}>
-      {!loading && children}
+    <AuthContext.Provider value={{ user }}>
+      {children}
     </AuthContext.Provider>
   );
 };
 
-export { AuthProvider, useAuth };
+export const useAuth = () => useContext(AuthContext);

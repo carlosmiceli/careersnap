@@ -1,21 +1,35 @@
-import { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useAuth } from '../../../contexts/auth';
+import DOMPurify from 'dompurify';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from '../../../shadcn/components/ui/dialog';
+import Editor from '../forms/Editor';
 
-function TextBox(props) {
-    const [text, setText] = useState(props.text);
+function TextBox({ id, title, content, onContentUpdate }) {
+    const { user } = useAuth();
 
-    const handleChange = (content) => {
-        console.log(content)
-        setText(content);
-        // Save the value to Firestore using the set function
-        // firestore.set('collection/doc', { text: value });
-    };
+    const cleanHtml = DOMPurify.sanitize(content, {
+        ALLOWED_ATTR: ['href', 'class'] // Add any attributes you want to allow
+    });
 
     return (
         <div>
-            <h1>{props.title}</h1>
-            <ReactQuill value={text} onChange={handleChange} />
+            <div className='flex justify-between items-center'>
+                <h1>{title}</h1>
+                {user &&
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <h1 className='text-xs'>Edit</h1>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Edit {`"${title}"`}</DialogTitle>
+                            </DialogHeader>
+                            <Editor content={content} id={id} onSave={(newContent) => onContentUpdate(id, newContent)}
+                            />
+                        </DialogContent>
+                    </Dialog>
+                }
+            </div>
+            <div className='text-sm p-2 pt-4 min-h-[100px] rounded-sm border border-slate-400 bg-white  sanitized-content' dangerouslySetInnerHTML={{ __html: cleanHtml }}></div>
         </div>
     );
 }
