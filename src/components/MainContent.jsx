@@ -21,11 +21,9 @@ function MainContent() {
             const adminContentDocRef = doc(db, "adminContent", process.env.REACT_APP_FIREBASE_ADMIN_COLLECTION_ID);
             const categoriesCollectionRef = collection(adminContentDocRef, "categories");
 
-            // Create and execute a query to fetch and order categories in a single request
             const categoriesQuery = query(categoriesCollectionRef, orderBy('order', 'asc'));
             const querySnapshot = await getDocs(categoriesQuery);
 
-            // Map the query results to an array of category data
             const categoriesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             console.log(categoriesData)
 
