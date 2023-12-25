@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { doc, collection, getDocs, query, orderBy } from "firebase/firestore";
+import { Triangle } from 'react-loader-spinner'
 import { db } from '../firebase';
 
 
@@ -15,9 +16,11 @@ import Reward from "./sub/Reward";
 function MainContent() {
     const [oddCategories, setOddCategories] = useState([]);
     const [evenCategories, setEvenCategories] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); 
 
     useEffect(() => {
         const fetchCategories = async () => {
+            setIsLoading(true);
             const adminContentDocRef = doc(db, "adminContent", process.env.REACT_APP_FIREBASE_ADMIN_COLLECTION_ID);
             const categoriesCollectionRef = collection(adminContentDocRef, "categories");
 
@@ -38,6 +41,7 @@ function MainContent() {
 
             setOddCategories(oddCats);
             setEvenCategories(evenCats);
+            setIsLoading(false);
         };
 
         fetchCategories();
@@ -61,6 +65,20 @@ function MainContent() {
     const currentDate = new Date();
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     const formattedDate = currentDate.toLocaleDateString('en-US', options);
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-full">
+                <Triangle
+                    visible={true}
+                    height="80"
+                    width="80"
+                    color="#4fa94d"
+                    ariaLabel="triangle-loading"
+                />
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col py-4 h-full w-full items-center overflow-y-scroll">
