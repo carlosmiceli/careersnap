@@ -38,3 +38,9 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CAREERSNAP_CCC46 }}'
           channelId: live
           projectId: careersnap-ccc46
+
+      # Deploying Firestore Rules
+      - name: Deploy Firestore Rules
+        run: npx firebase-tools deploy --only firestore:rules
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
