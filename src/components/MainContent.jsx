@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/auth';
-import { doc, collection, getDocs, query, updateDoc, orderBy } from "firebase/firestore";
+import { doc, collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from '../firebase';
 
 
@@ -14,7 +13,6 @@ import Previous from "./sub/Previous";
 import Reward from "./sub/Reward";
 
 function MainContent() {
-    const { user } = useAuth();
     const [oddCategories, setOddCategories] = useState([]);
     const [evenCategories, setEvenCategories] = useState([]);
 
