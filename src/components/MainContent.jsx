@@ -52,7 +52,6 @@ function MainContent() {
             return cat;
         });
     
-        // Check which set the category belongs to and update accordingly
         if (oddCategories.some(cat => cat.id === id)) {
             setOddCategories(categories => updateContent(categories));
         } else if (evenCategories.some(cat => cat.id === id)) {
