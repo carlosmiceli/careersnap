@@ -20,7 +20,6 @@ function Editor({ id, content, onSave }) {
 
         updateDoc(categoryDocRef, { content: editorContent })
             .then(() => {
-                console.log("Document successfully updated!");
                 onSave(editorContent);
             })
             .catch((error) => {
@@ -33,7 +32,7 @@ function Editor({ id, content, onSave }) {
 
             <ReactQuill className='max-w-[700px] h-[500px]' value={editorContent} onChange={handleChange} />
             <div className='flex gap-2 mt-12 justify-end'>
-                <Button onClick={handleSave} className="w-[80px]" >Save</Button>
+                <DialogClose><Button onClick={handleSave} className="w-[80px]" >Save</Button></DialogClose>
                 <DialogClose><Button className="w-[80px]">Cancel</Button></DialogClose>
             </div>
         </div>

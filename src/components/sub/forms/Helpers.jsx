@@ -55,7 +55,6 @@ function HelpersForm() {
     const { handleSubmit, reset, control } = methods;
 
     const onSubmit = async (data) => {
-        console.log(data)
         try {
             const docRef = await addDoc(collection(db, "helpers"), { name: data.name, contact: data.contact, link: data.link, description: data.description });
             if (docRef.id) {

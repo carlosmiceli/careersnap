@@ -25,7 +25,6 @@ function MainContent() {
             const querySnapshot = await getDocs(categoriesQuery);
 
             const categoriesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            console.log(categoriesData)
 
             const oddCats = [];
             const evenCats = [];
