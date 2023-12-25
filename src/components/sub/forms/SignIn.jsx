@@ -13,7 +13,7 @@ function SignIn() {
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        console.log(userCredential.user);
       })
       .catch((error) => {
         const errorCode = error.code;
