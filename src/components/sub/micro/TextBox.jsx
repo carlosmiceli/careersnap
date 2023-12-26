@@ -17,7 +17,7 @@ function TextBox({ id, title, content, onContentUpdate }) {
                 {user &&
                     <Dialog>
                         <DialogTrigger asChild>
-                            <h1 className='text-xs'>Edit</h1>
+                            <h1 className='text-xs cursor-pointer'>Edit</h1>
                         </DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
