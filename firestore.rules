@@ -1,9 +1,24 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read: if true; // Anyone can read
-      allow write: if request.auth != null; // Only authenticated users can write
+    
+    // AdminContent: Readable by anyone, writable only by authenticated users
+    match /adminContent/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
     }
+
+    // Emails: Writable by anyone, not readable
+    match /emails/{document=**} {
+      allow read: if false;
+      allow write: if true;
+    }
+
+    // Helpers: Writable by anyone, not readable
+    match /helpers/{document=**} {
+      allow read: if false;
+      allow write: if true;
+    }
+
   }
 }
