@@ -84,7 +84,7 @@ function MainContent() {
         <div className="flex flex-col py-4 h-full w-full items-center overflow-y-scroll">
             <div className="grid grid-cols-2 lg:flex flex-cols-4 w-10/12 gap-6 overflow-y-scroll no-scrollbar">
                 <div className="sticky top-0 z-10 order-1 flex flex-col gap-3 lg: w-2/12">
-            <h1 className="text-2xl">Carlos' Career Snapshot <span className="text-[12px]">(as of {formattedDate})</span></h1>
+            <h1 className="text-2xl leading-7">Carlos' Career Snapshot <span className="text-[12px]">(as of {formattedDate})</span></h1>
                     <Photo />
                     <About />
                     <Status />
