@@ -105,13 +105,13 @@
 }
 
 .sanitized-content li {
-  margin-left: 20px;
+  margin-left: 15px;
   /* other styles */
 }
 
 .sanitized-content ol {
   list-style-type: decimal; /* Default style for ordered lists */
-  padding-left: 20px; /* Ensure padding for the numbers */
+  padding-left: 15px; /* Ensure padding for the numbers */
 }
 
 .sanitized-content h1 {
@@ -125,5 +125,13 @@
   /* Add other styling as needed */
 }
 
-/* Repeat for h3, h4, h5, h6 if needed */
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

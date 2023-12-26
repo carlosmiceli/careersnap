@@ -63,7 +63,7 @@ function MainContent() {
     };
 
     const currentDate = new Date();
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const options = { day: 'numeric', month: 'short', year: 'numeric' };
     const formattedDate = currentDate.toLocaleDateString('en-US', options);
 
     if (isLoading) {
@@ -83,9 +83,9 @@ function MainContent() {
     return (
         <div className="flex flex-col py-4 h-full w-full items-center overflow-y-scroll">
 
-            <h1 className="text-3xl mb-6">Carlos' Career Snapshot <span className="text-[16px]">(as of {formattedDate})</span></h1>
-            <div className="grid grid-cols-2 lg:flex flex-cols-4 w-10/12 gap-6">
-                <div className="order-1 flex flex-col gap-3 lg: w-2/12">
+            <div className="grid grid-cols-2 lg:flex flex-cols-4 w-10/12 gap-6 overflow-y-scroll no-scrollbar">
+                <div className="sticky top-0 z-10 order-1 flex flex-col gap-3 lg: w-2/12">
+            <h1 className="text-2xl">Carlos' Career Snapshot <span className="text-[12px]">(as of {formattedDate})</span></h1>
                     <Photo />
                     <About />
                     <Status />
@@ -101,7 +101,7 @@ function MainContent() {
                         <TextBox key={category.id} id={category.id} title={category.title} content={category.content} onContentUpdate={updateCategoryContent}  />
                     ))}
                 </div>
-                <div className="order-2 lg:order-4 lg: w-2/12">
+                <div className="sticky top-0 z-10 order-2 lg:order-4 lg: w-2/12">
                     <Reward />
                     <Previous />
                 </div>

@@ -29,7 +29,7 @@ function TextBox({ id, title, content, onContentUpdate }) {
                     </Dialog>
                 }
             </div>
-            <div className='text-sm p-2 pt-4 min-h-[100px] rounded-sm border border-slate-400 bg-white  sanitized-content' dangerouslySetInnerHTML={{ __html: cleanHtml }}></div>
+            <div className='text-[13px] p-2 min-h-[100px] rounded-sm border border-slate-400 bg-white  sanitized-content' dangerouslySetInnerHTML={{ __html: cleanHtml }}></div>
         </div>
     );
 }
