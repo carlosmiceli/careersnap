@@ -27,22 +27,22 @@ function Submit() {
     };
 
     return (
-        <div className="flex min-h-[6vh] justify-center items-center py-3 bg-[#F34646]">
+        <div className="flex min-h-[6vh] justify-center items-center py-3 px-5 bg-[#F34646]">
             {!form
                 ?
-                <div className="flex gap-2 justify-center items-center">
+                <div className="flex gap-2 justify-center items-center text-center text-xs md:text-sm xl:text-base">
                     <div className="text-white font-bold">
-                        <p >Want your own Career Snap? First 100 subscribers get it for free for a year when it releases 😊:</p>
+                        <p >Want your own Career Snap? First 100 subscribers get it for free for a year when it releases ➡️</p>
                     </div>
                     <form className="flex gap-2 items-center" onSubmit={handleSubmit}>
                         <Input
-                            className="w-80"
+                            className="w-20 md:w-40 lg:w-60 xl:w-80"
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Email"
                         />
-                        <Button type="submit" className="bg-[#242C3F]">I'm interested!</Button>
+                        <Button type="submit" className="bg-[#242C3F] text-sm p-2 lg:text-sm lg:p-4 xl:text-base">I'm interested!</Button>
                     </form>
                 </div>
                 :

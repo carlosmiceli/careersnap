@@ -27,14 +27,14 @@ function Reward() {
     return (
         <div>
             <Card className="flex flex-col text-center bg-green-500 border-0 shadow-none text-white font-bold py-6 pt-5 px-5 items-center">
-                <h1 className="text-4xl">Reward:</h1>
+                <h1 className="text-3xl xl:text-4xl">Reward:</h1>
                 <div className="flex flex-col mt-2 mb-6">
-                    <h1 className="text-xl">U$D 2.000 to 15.000*</h1>
-                    <Dialog>
+                    <h1 className="text-xl md:text-lg xl:text-xl">U$D 2.000 to 15.000*</h1>
+                    <Dialog >
                         <DialogTrigger asChild>
-                            <p className="text-sm text-decoration-line: underline hover:cursor-pointer">(How does this work?)</p>
+                            <p className="text-xs xl:text-sm text-decoration-line: underline hover:cursor-pointer">(How does this work?)</p>
                         </DialogTrigger>
-                        <DialogContent className="text-[13px]">
+                        <DialogContent className="text-[13px] overflow-y-auto">
                             <DialogHeader>
                                 <DialogTitle>How Does The Reward Work?</DialogTitle>
                             </DialogHeader>
@@ -73,7 +73,7 @@ function Reward() {
                     </Dialog>
                 </div>
                 <AlertDialog>
-                    <AlertDialogTrigger asChild><Button className="text-xl bg-[#242C3F] mb-5">I Want to Help!</Button></AlertDialogTrigger>
+                    <AlertDialogTrigger asChild><Button className="text-sm xl:text-lg 2xl:text-xl bg-[#242C3F] mb-5">I Want to Help!</Button></AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>
                             <AlertDialogTitle className="w-[95%] pl-2">Thank you for helping me get my next job!</AlertDialogTitle>

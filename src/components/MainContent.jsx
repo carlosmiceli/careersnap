@@ -16,7 +16,7 @@ import Reward from "./sub/Reward";
 function MainContent() {
     const [oddCategories, setOddCategories] = useState([]);
     const [evenCategories, setEvenCategories] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); 
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -54,7 +54,7 @@ function MainContent() {
             }
             return cat;
         });
-    
+
         if (oddCategories.some(cat => cat.id === id)) {
             setOddCategories(categories => updateContent(categories));
         } else if (evenCategories.some(cat => cat.id === id)) {
@@ -83,24 +83,24 @@ function MainContent() {
     return (
         <div className="flex flex-col py-4 h-full w-full items-center overflow-y-scroll">
             <div className="grid grid-cols-2 lg:flex flex-cols-4 w-10/12 gap-6 overflow-y-scroll no-scrollbar">
-                <div className="sticky top-0 z-10 order-1 flex flex-col gap-3 lg: w-2/12">
-            <h1 className="text-2xl leading-7">Carlos' Career Snapshot <span className="text-[12px]">(as of {formattedDate})</span></h1>
+                <div className="lg:sticky lg:top-0 lg:z-10 order-1 mr-1 flex flex-col gap-3 lg:w-2/12">
+                    <h1 className="lg:text-xl">Carlos' Career Snapshot <span className="text-xs">({formattedDate})</span></h1>
                     <Photo />
                     <About />
                     <Status />
                     <Contact />
                 </div>
-                <div className="order-3 lg:order-2 flex flex-col gap-4 w-4/12">
+                <div className="order-3 lg:order-2 flex flex-col gap-4 lg:w-4/12">
                     {oddCategories.map(category => (
-                        <TextBox key={category.id} id={category.id} title={category.title} content={category.content} onContentUpdate={updateCategoryContent}  />
+                        <TextBox key={category.id} id={category.id} title={category.title} content={category.content} onContentUpdate={updateCategoryContent} />
                     ))}
                 </div>
-                <div className="order-4 lg:order-3 flex flex-col gap-4 w-4/12">
+                <div className="order-4 lg:order-3 flex flex-col gap-4 lg:w-4/12">
                     {evenCategories.map(category => (
-                        <TextBox key={category.id} id={category.id} title={category.title} content={category.content} onContentUpdate={updateCategoryContent}  />
+                        <TextBox key={category.id} id={category.id} title={category.title} content={category.content} onContentUpdate={updateCategoryContent} />
                     ))}
                 </div>
-                <div className="sticky top-0 z-10 order-2 lg:order-4 lg: w-2/12">
+                <div className="lg:sticky lg:top-0 lg:z-10 order-2 lg:order-4 lg:w-2/12">
                     <Reward />
                     <Previous />
                 </div>

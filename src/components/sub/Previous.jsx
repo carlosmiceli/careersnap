@@ -2,7 +2,7 @@ function Previous() {
     return (
         <div className="flex flex-col gap-1 py-3 px-1">
             <h1 className="text-decoration-line: underline">Previous Position</h1>
-            <div className="flex flex-col gap-1 text-[12px] py-1">
+            <div className="flex flex-col gap-1 text-sm lg:text-[12px] py-1">
                 <h1>Salary: <strong>U$D 4500</strong></h1>
                 <h1>Role: <strong>Senior In-Training Full Stack Engineer</strong></h1>
                 <h1>Location: Austin, Texas (fully remote) </h1>
