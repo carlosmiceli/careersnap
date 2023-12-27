@@ -73,7 +73,7 @@ function Reward() {
                     </Dialog>
                 </div>
                 <AlertDialog>
-                    <AlertDialogTrigger asChild><Button className="text-sm xl:text-lg 2xl:text-xl bg-[#242C3F] mb-5">I Want to Help!</Button></AlertDialogTrigger>
+                    <AlertDialogTrigger asChild><Button className="text-lg lg:text-base xl:text-lg 2xl:text-xl bg-[#242C3F] mb-5">I Want to Help!</Button></AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>
                             <AlertDialogTitle className="w-[95%] pl-2">Thank you for helping me get my next job!</AlertDialogTitle>

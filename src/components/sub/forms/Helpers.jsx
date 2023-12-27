@@ -142,8 +142,8 @@ function HelpersForm() {
                                     </FormItem>
                                 )}
                             />
-                            <div className='flex gap-2'>
-                                <Button type="submit">Submit</Button>
+                            <div className='flex justify-end'>
+                            <AlertDialogCancel><Button type="submit">Submit</Button></AlertDialogCancel>
                                 <AlertDialogCancel className="border border-black">Cancel</AlertDialogCancel>
                             </div>
                         </form>
