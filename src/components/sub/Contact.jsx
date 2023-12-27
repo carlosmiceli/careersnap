@@ -7,7 +7,7 @@ import Link from "./micro/Link";
 function Contact() {
     return (
         <div className="">
-            <Card className="flex flex-col gap-4 border-0 md:text-xs xl:text-sm shadow-none bg-transparent pr-5">
+            <Card className="flex flex-col gap-4 border-0 shadow-none bg-transparent pr-5">
                 <Link url="https://www.carlosmiceli.com" image="images/cm.png" text="carlosmiceli.com" />
                 <Link url="https://www.linkedin.com/in/carlosmiceli/" image="images/linkedin.png" text="Linkedin" />
                 <Link url="https://github.com/carlosmiceli" image="images/github.png" text="Github" />
