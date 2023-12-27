@@ -31,11 +31,11 @@ function MainContent() {
 
             const oddCats = [];
             const evenCats = [];
-            categoriesData.forEach((category, index) => {
-                if (index % 2 === 0) {
-                    oddCats.push(category);
-                } else {
+            categoriesData.forEach((category) => {
+                if (category.order % 2 === 0) {
                     evenCats.push(category);
+                } else {
+                    oddCats.push(category);
                 }
             });
 
@@ -91,12 +91,12 @@ function MainContent() {
                     <Contact />
                 </div>
                 <div className="order-3 lg:order-2 flex flex-col gap-4 lg:w-4/12">
-                    {oddCategories.map(category => (
+                    {evenCategories.map(category => (
                         <TextBox key={category.id} id={category.id} title={category.title} content={category.content} onContentUpdate={updateCategoryContent} />
                     ))}
                 </div>
                 <div className="order-4 lg:order-3 flex flex-col gap-4 lg:w-4/12">
-                    {evenCategories.map(category => (
+                    {oddCategories.map(category => (
                         <TextBox key={category.id} id={category.id} title={category.title} content={category.content} onContentUpdate={updateCategoryContent} />
                     ))}
                 </div>
