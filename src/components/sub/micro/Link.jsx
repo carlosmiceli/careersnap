@@ -7,7 +7,7 @@ function Link(props) {
 
     return (
         <div className='flex gap-2'>
-            {image && <img src={image} alt="" onClick={handleClick} className='w-5 h-5 cursor-pointer'/>}
+            {image && <img src={image} alt="" onClick={handleClick} className='w-5 h-5 cursor-pointer bg-transparent'/>}
             <p onClick={handleClick} className='cursor-pointer flex items-center text-sm'>{text}</p>
         </div>
     );
